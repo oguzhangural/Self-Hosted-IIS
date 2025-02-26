@@ -16,4 +16,7 @@ jobs:
         uses: actions/checkout@v2  # Repository'yi self-hosted runner'a çekiyoruz
 
       - name: Copy files to IIS server
-        run: Copy-Item -Path "C:\actions-runner\my_work\Self-Hosted-IIS\Self-Hosted-IIS\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
+        shell: pwsh  # Powershell (pwsh) kullanıyoruz
+        run: |
+          Copy-Item -Path "C:\actions-runner\my_work\Self-Hosted-IIS\Self-Hosted-IIS\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
+          Write-Host "File successfully copied!"
