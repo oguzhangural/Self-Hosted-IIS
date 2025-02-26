@@ -16,4 +16,4 @@ jobs:
         uses: actions/checkout@v2  # Repo'yu self-hosted runner'a çekiyoruz
 
       - name: Copy welcome.html to IIS
-        run: Copy-Item -Path "C:\actions-runner\my_work\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
+        run: Copy-Item -Path "C:\actions-runner\my_work\welcome.html" -Destination "C:\inetpub\wwwroot" -Force
