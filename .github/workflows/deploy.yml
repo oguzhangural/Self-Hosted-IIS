@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - "*.html"  # Sadece .html dosyalarındaki değişikliklerde çalışacak
+      - "*.html"  # Sadece .html dosyalarındaki değişikliklerde çalışır
 
 jobs:
   deploy:
@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2  # Repo'yu self-hosted runner'a çekiyoruz
+        uses: actions/checkout@v2  # Repository'yi çekiyoruz
 
       - name: Copy files to IIS server
-        run: Copy-Item -Path "C:\actions-runner\my_work\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
+        run: Copy-Item -Path "$env:GITHUB_WORKSPACE\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
