@@ -5,15 +5,15 @@ on:
     branches:
       - master
     paths:
-      - "welcome.html"  # Sadece welcome.html değiştiğinde tetiklenecek
+      - "*.html"  # Sadece .html dosyalarındaki değişikliklerde çalışacak
 
 jobs:
   deploy:
-    runs-on: self-hosted  # Self-hosted runner'ı kullanıyoruz
+    runs-on: self-hosted  # Self-hosted runner üzerinde çalışacak
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2  # Repo'yu self-hosted runner'a çekiyoruz
 
-      - name: Copy welcome.html to IIS
-        run: Copy-Item -Path "C:\actions-runner\my_work\welcome.html" -Destination "C:\inetpub\wwwroot" -Force
+      - name: Copy files to IIS server
+        run: Copy-Item -Path "C:\actions-runner\my_work\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
