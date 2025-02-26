@@ -1,0 +1,19 @@
+name: Deploy to IIS Server
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "welcome.html"  # Sadece welcome.html değiştiğinde tetiklenecek
+
+jobs:
+  deploy:
+    runs-on: self-hosted  # Self-hosted runner'ı kullanıyoruz
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2  # Repo'yu self-hosted runner'a çekiyoruz
+
+      - name: Copy welcome.html to IIS
+        run: Copy-Item -Path "C:\actions-runner\my_work\welcome.html" -Destination "C:\inetpub\wwwroot\welcome.html" -Force
